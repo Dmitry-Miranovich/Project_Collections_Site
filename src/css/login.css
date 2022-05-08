@@ -1,0 +1,26 @@
+.login_field{
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 1px solid #282c34;
+    display: block;
+    text-align: center;
+    background: lightgray;
+}
+.login_input{
+    display: block;
+}
+.registration_field{
+    display: flex;
+    justify-content: center;
+}
+.registration_link{
+    margin-top: 15px;
+    margin-left: 5px;
+    justify-content: center;
+}
