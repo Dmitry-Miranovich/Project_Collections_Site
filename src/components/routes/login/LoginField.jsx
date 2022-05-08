@@ -1,7 +1,8 @@
 import React from "react";
 import '../../../css/login.css'
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import axios from "axios";
+import RegistrationField from "../registration/RegistrationField";
 
 const customUser = {
     "users": [
@@ -29,15 +30,7 @@ class LoginField extends React.Component{
     }
 
     handleRedirect(res){
-        const {redirect} = this.state
-        if(res === 200){
-            if(redirect){
-                window.location.href = "http://localhost:3000/registration"
-            }
-        }else{
-            console.log(res)
-            console.log('err')
-        }
+        return<Redirect to={"/registration"}/>
     }
 
     handleSubmit = e =>{
@@ -49,8 +42,10 @@ class LoginField extends React.Component{
         }
         axios.post("http://localhost:8100/login", user)
             .then((res)=>{
+                console.log(res)
                 this.setState({redirect:true})
                 this.handleRedirect(res.status)
+                console.log(res)
             })
             .catch((err)=>{
                 console.log(err)

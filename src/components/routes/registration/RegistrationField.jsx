@@ -15,10 +15,20 @@ class RegistrationField extends React.Component{
         }
     }
 
+    handleSubmit = e =>{
+
+    }
+
      render(){
          return(
-             <div>
-
+             <div className={"registration_box"}>
+                 <form onSubmit={this.handleSubmit}>
+                     <input className={"registration_field"} type={"text"}/>
+                     <input className={"registration_field"} type={"text"}/>
+                     <input className={"registration_field"} type={"text"}/>
+                     <input className={"registration_field"} type={"text"}/>
+                     <button type ="submit" >Зарегистрироватся</button>
+                 </form>
              </div>
          )
      }
