@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from "react-router-dom";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore} from "redux";
+import allReducers from './reducers'
+import {Provider} from "react-redux"
+
+const store = createStore(allReducers)
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App/>
+    <Provider store={store}>
+        <App/>
+    </Provider>
 );
 
 reportWebVitals();

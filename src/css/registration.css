@@ -12,3 +12,16 @@
     text-align: center;
     background: lightgray;
 }
+.registration_box div{
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+.registration_box p{
+    width: 120px;
+    text-align: left;
+}
+.registration_field{
+    height: 20px;
+    margin: 15px;
+}

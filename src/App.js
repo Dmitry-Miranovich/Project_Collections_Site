@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import RegistrationField from "./components/routes/registration/RegistrationField";
 import LoginField from "./components/routes/login/LoginField";
+import UsersPage from "./components/routes/main_page/UsersPage";
 
 
 class App extends React.Component{
@@ -33,6 +34,9 @@ class App extends React.Component{
                <Route path ={"/registration"}>
                  <RegistrationField/>
                </Route>
+                 <Route path={"/users"}>
+                     <UsersPage/>
+                 </Route>
              </div>
            </Switch>
            </div>
