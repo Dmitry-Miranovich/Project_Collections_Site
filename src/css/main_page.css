@@ -1,0 +1,41 @@
+.header{
+    display:flex;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    background: silver;
+}
+.header h1{
+    margin: 0 80px 0 0;
+}
+.header_items{
+    display:flex;
+    width: 100%;
+}
+.header_items div{
+    border-right: 1px #B2B0B0 solid;
+}
+.header_items div:hover{
+    background: #B0ABAB;
+    transition: background 0.5s;
+}
+.header_items a{
+    position: relative;
+    top: 25%;
+    margin-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    text-decoration: unset;
+    color: #282c34;
+}
+.exit_box{
+    position: relative;
+    float: right;
+}
+.user_list{
+    margin: 30px auto;
+    position: relative;
+    background: #7E6C6C;
+    height: 100vh;
+    width: 100vw;
+}

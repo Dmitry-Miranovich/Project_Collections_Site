@@ -1,8 +1,8 @@
 import React , {useState} from "react";
 import '../../../css/login.css'
-import {Link, Redirect, Route} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
-import RegistrationField from "../registration/RegistrationField";
 import {useSelector , useDispatch} from "react-redux"
 import {isUserLogged} from '../../../actions'
 import {isUserAdmin} from "../../../actions";
@@ -11,6 +11,7 @@ function LoginField (props){
     const isLogged = useSelector(state => state.isLogged)
     const isAdmin = useSelector(state => state.isAdmin)
     const dispatch = useDispatch()
+    const history = useHistory()
     const customUser = {
         "users": [
             {
@@ -39,15 +40,14 @@ function LoginField (props){
         })
     }
     const handleRedirect = res =>{
-        if(res === 200){
+        if(res.redirect === true){
             console.log("Redirection to registration")
-            window.location.href = "http://localhost:3000/registration"
+            history.push('/users')
         }
     }
     const handleSubmit = e =>{
         e.preventDefault()
         const {email, password} = user
-
         const user_info = {
             email,
             password
@@ -59,7 +59,7 @@ function LoginField (props){
                 setRedirect((prev)=>{
                     prev = true
                 })
-                handleRedirect(res.status)
+                handleRedirect(res.data)
                 console.log(res)
             })
             .catch((err)=>{
