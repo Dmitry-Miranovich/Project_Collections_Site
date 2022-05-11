@@ -1,9 +1,9 @@
-const userAccountReducer = (state ,action)=>{
+const userAccountReducer = (state = "" ,action)=>{
     switch (action.type) {
-        case "get_email":{
+        case "GET_EMAIL":{
             return state
         }
-        case "set_email":{
+        case "SET_EMAIL":{
             state = action.data
             return state
         }

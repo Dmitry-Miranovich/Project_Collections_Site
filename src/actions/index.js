@@ -12,13 +12,13 @@ export const isUserAdmin = (status_admin) =>{
 }
 export const getUserEmail = (email) =>{
     return{
-        type: "get_email",
+        type: "GET_EMAIL",
         data: email
     }
 }
 export const setUserEmail = (email)=>{
     return{
-        type: "set_email",
+        type: "SET_EMAIL",
         data: email
     }
 }

@@ -10,7 +10,7 @@ import {isUserAdmin} from "../../../actions";
 function LoginField (props){
     const isLogged = useSelector(state => state.isLogged)
     const isAdmin = useSelector(state => state.isAdmin)
-    const userEmail = useSelector(state => state.userStore)
+    const userEmail = useSelector(state => state.userEmail)
     const dispatch = useDispatch()
     const history = useHistory()
     const customUser = {
@@ -43,10 +43,9 @@ function LoginField (props){
     const handleRedirect = res =>{
         if(res.redirect === true){
             console.log("Redirection to registration")
-            dispatch(setUserEmail("something"))
-
+            dispatch(setUserEmail(user.email))
             console.log({userEmail})
-            //history.push('/users')
+            history.push('/users')
         }
     }
     const handleSubmit = e =>{

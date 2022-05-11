@@ -9,12 +9,11 @@ import {Provider} from "react-redux"
 import userAccountReducer from "./reducers/userAccountReducer";
 
 const store = createStore(allReducers)
-const userStore = createStore(userAccountReducer)
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store} userStore = {userStore}>
+    <Provider store={store}>
         <App/>
     </Provider>
 );
