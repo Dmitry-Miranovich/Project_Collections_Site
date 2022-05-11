@@ -4,24 +4,16 @@ import {Link, Redirect} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import {useSelector , useDispatch} from "react-redux"
-import {isUserLogged, setUserEmail} from '../../../actions'
+import {isUserLogged, setUserID} from '../../../actions'
 import {isUserAdmin} from "../../../actions";
 
 function LoginField (props){
     const isLogged = useSelector(state => state.isLogged)
     const isAdmin = useSelector(state => state.isAdmin)
-    const userEmail = useSelector(state => state.userEmail)
+    const userID = useSelector(state => state.userID)
     const dispatch = useDispatch()
     const history = useHistory()
-    const customUser = {
-        "users": [
-            {
-                email: "some",
-                password: "ass",
-                redirect : false
-            }
-        ]
-    }
+
     const [user, setUser ] = useState({
         email: "",
         password: ""
@@ -42,28 +34,17 @@ function LoginField (props){
     }
     const handleRedirect = res =>{
         if(res.redirect === true){
-            console.log("Redirection to registration")
-            dispatch(setUserEmail(user.email))
-            console.log({userEmail})
+            dispatch(setUserID(res.id))
+            console.log({userID})
             history.push('/users')
         }
     }
     const handleSubmit = e =>{
         e.preventDefault()
-        const {email, password} = user
-        const user_info = {
-            email,
-            password
-        }
-
-        axios.post("http://localhost:8100/login", user_info)
+        axios.post("http://localhost:8100/login", user)
             .then((res)=>{
                 console.log(res)
-                setRedirect((prev)=>{
-                    prev = true
-                })
                 handleRedirect(res.data)
-                console.log(res)
             })
             .catch((err)=>{
                 console.log(err)

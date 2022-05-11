@@ -6,7 +6,7 @@ import userAccountReducer from "./userAccountReducer";
 const allReducers = combineReducers({
     isLogged: userReducer,
     isAdmin: adminReducer,
-    userEmail: userAccountReducer
+    userID: userAccountReducer
 })
 
 export default allReducers

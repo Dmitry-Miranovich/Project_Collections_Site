@@ -8,20 +8,16 @@ import UserInfo from "./UserInfo";
 function UsersPage(props) {
 
     const [user, setUser] = useState({
-        f_name:"",
-        l_name:"",
-        m_name:"",
-        email:"",
-        status: "",
-        permission: "",
-        hex: ""
+        data: []
     })
     const [isUsersExist, setIsUsersExist] = useState(false)
 
     useEffect(()=>{
         axios.get("http://localhost:8100/users")
             .then((res)=>{
-                setUser(res.data)
+                console.log(res.data.users)
+                setUser(res.data.users)
+                console.log(user)
                 setIsUsersExist(true)
             })
             .catch((err)=>{
