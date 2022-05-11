@@ -7,22 +7,12 @@ import {
 import RegistrationField from "./components/routes/registration/RegistrationField";
 import LoginField from "./components/routes/login/LoginField";
 import UsersPage from "./components/routes/main_page/UsersPage";
+import ProfilePage from "./components/routes/profile/ProfilePage";
+import SearchPage from "./components/routes/search/SearchPage";
 
 
-class App extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state={apiResponse:""}
-  }
-  callAPI(){
-    fetch("http://localhost:8100/testApi")
-        .then(res => res.text())
-        .then(res => this.setState({apiResponse:res}))
-  }
-  componentDidMount() {
-    this.callAPI()
-  }
-  render(){
+const App = (props) =>{
+
     return (
          <Router>
            <div className="App">
@@ -37,12 +27,17 @@ class App extends React.Component{
                  <Route path={"/users"}>
                      <UsersPage/>
                  </Route>
+                 <Route path={"/profile"}>
+                     <ProfilePage/>
+                 </Route>
+                 <Route path={"/search"}>
+                     <SearchPage/>
+                 </Route>
              </div>
            </Switch>
            </div>
          </Router>
 
     );
-  }
 }
 export default App;

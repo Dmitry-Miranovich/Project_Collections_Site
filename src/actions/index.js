@@ -10,3 +10,15 @@ export const isUserAdmin = (status_admin) =>{
         data: status_admin
     }
 }
+export const getUserEmail = (email) =>{
+    return{
+        type: "get_email",
+        data: email
+    }
+}
+export const setUserEmail = (email)=>{
+    return{
+        type: "set_email",
+        data: email
+    }
+}

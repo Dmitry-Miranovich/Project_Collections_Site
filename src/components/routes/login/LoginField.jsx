@@ -4,12 +4,13 @@ import {Link, Redirect} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import {useSelector , useDispatch} from "react-redux"
-import {isUserLogged} from '../../../actions'
+import {isUserLogged, setUserEmail} from '../../../actions'
 import {isUserAdmin} from "../../../actions";
 
 function LoginField (props){
     const isLogged = useSelector(state => state.isLogged)
     const isAdmin = useSelector(state => state.isAdmin)
+    const userEmail = useSelector(state => state.userStore)
     const dispatch = useDispatch()
     const history = useHistory()
     const customUser = {
@@ -42,7 +43,10 @@ function LoginField (props){
     const handleRedirect = res =>{
         if(res.redirect === true){
             console.log("Redirection to registration")
-            history.push('/users')
+            dispatch(setUserEmail("something"))
+
+            console.log({userEmail})
+            //history.push('/users')
         }
     }
     const handleSubmit = e =>{
@@ -76,6 +80,7 @@ function LoginField (props){
                     </div>
                     <div>
                         <input className={"password"} type={'password'} name={"password"} onChange={handleInputChange}/>
+
                     </div>
                     <div>
                         <button type={"submit"} >Войти</button>

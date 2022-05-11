@@ -3,6 +3,7 @@ import '../../../css/main_page.css'
 import axios from "axios";
 import Header from "./Header";
 import UsersList from "./UsersList";
+import UserInfo from "./UserInfo";
 
 function UsersPage(props) {
 
@@ -11,17 +12,17 @@ function UsersPage(props) {
         l_name:"",
         m_name:"",
         email:"",
+        status: "",
+        permission: "",
+        hex: ""
     })
+    const [isUsersExist, setIsUsersExist] = useState(false)
 
     useEffect(()=>{
         axios.get("http://localhost:8100/users")
             .then((res)=>{
-                const mas = res.data.map((value)=>{
-                    setUser(prevState => {
-                        prevState = value
-                    })
-                    console.log(user)
-                })
+                setUser(res.data)
+                setIsUsersExist(true)
             })
             .catch((err)=>{
                 console.log(err)
@@ -31,7 +32,11 @@ function UsersPage(props) {
     return (
         <div className={"main_page"}>
             <Header/>
-            <UsersList/>
+            {isUsersExist ?(
+                <UsersList data = {user}/>
+            ):(
+                <h2>Пользователей не найдено</h2>
+            )}
         </div>
     )
 

@@ -39,3 +39,33 @@
     height: 100vh;
     width: 100vw;
 }
+.user_info{
+    width: 200px;
+    height: 300px;
+    background: #B2B0B0;
+    border: 1px #7E6C6C solid;
+    border-radius: 10px;
+    justify-content: center;
+}
+.user_info:hover{
+    background: lightgray;
+    transition: background 0.5s;
+}
+.user_list_box{
+    display: inline-flex;
+    margin: 20px 0 0 20px;
+}
+.user_list_box div{
+    margin-right: 20px;
+    text-align: center;
+}
+.user_info p{
+
+}
+.image_holder{
+    width: 150px;
+    height: 150px;
+    margin: 25px;
+    background: silver;
+    border-radius: 360px;
+}
