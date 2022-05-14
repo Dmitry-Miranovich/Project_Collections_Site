@@ -1,11 +1,12 @@
-const userReducer = (state = false, action) =>{
-    switch(action.type){
-        case "IS_LOGGED":{
-            state = action.status
-            return state;
-        }
-        default:
+const userReducer = (state = null, action)=>{
+    switch (action.type) {
+        case "SET_USER":{
+            state = action.data
             return state
+        }
+        default:{
+            return state
+        }
     }
 }
 export default userReducer

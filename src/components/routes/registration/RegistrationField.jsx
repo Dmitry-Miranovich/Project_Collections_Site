@@ -2,18 +2,20 @@ import React , {useState} from "react";
 import '../../../css/registration.css'
 import {Link} from "react-router-dom";
 import axios from "axios";
+import bcrypt from 'bcryptjs'
+import {useHistory} from "react-router-dom";
 
 
 function RegistrationField(props){
-
+    const history = useHistory()
     const [user, setUser] = useState({
         first_name:"",
         last_name: "",
         middle_name: "",
         email: "",
-        hex: ""
+        hash: ""
     })
-
+    const salt = bcrypt.genSaltSync(10)
     const handleInputChange = e =>{
         let name = e.target.name
         let value = e.target.value
@@ -30,22 +32,20 @@ function RegistrationField(props){
             result
         }
         if(mes.result){
-            window.location.href = "http://localhost:3000/"
+            history.push("/")
         }
     }
 
+    //todo https://heroku-collection-server.herokuapp.com/registration
+
     const handleSubmit = e =>{
         e.preventDefault()
-        const {first_name, last_name, middle_name, email, hex} = user
-        const user_info = {
-            first_name,
-            last_name,
-            middle_name,
-            email,
-            hex
+        if(user.email !== "" && user.first_name !== "" && user.middle_name !=="" && user.last_name !=="" && user.hash !==""){
+            user.hash = bcrypt.hashSync(user.hash, salt)
         }
-        axios.post('http://localhost:8100/registration', user_info)
+        axios.post('http://localhost:5000/registration', user)
             .then((res)=>{
+                console.log(res)
                 handleRedirect(res.data)
             })
             .catch((err)=>{
@@ -76,7 +76,7 @@ function RegistrationField(props){
                      </div>
                      <div>
                          <p>Пароль</p>
-                         <input className={"registration_field"} type={"text"} name = "hex"  onChange={handleInputChange}/>
+                         <input className={"registration_field"} type={"text"} name = "hash"  onChange={handleInputChange}/>
                      </div>
                      <button type ={"submit"} >Зарегистрироватся</button>
                  </form>

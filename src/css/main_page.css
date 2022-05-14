@@ -19,11 +19,15 @@
     background: #B0ABAB;
     transition: background 0.5s;
 }
-.header_items a{
+.header_items button{
     position: relative;
-    top: 25%;
-    margin-left: 10px;
+    width: auto;
+    height: 50px;
+    background: inherit;
+    border: 0;
     padding-right: 10px;
+    font-family: apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
     text-align: center;
     text-decoration: unset;
     color: #282c34;

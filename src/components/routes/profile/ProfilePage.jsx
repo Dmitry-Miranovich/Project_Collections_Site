@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "../../../css/profile.css"
 import {setUserID} from "../../../actions";
 import axios from "axios";
@@ -9,17 +9,25 @@ import {useSelector} from "react-redux";
 
 const ProfilePage = (prop) =>{
 
-    const userID = useSelector(state => state.userID)
+    const userID = useSelector(state => state.foreignUserID)
+    const [user, setUser] = useState({
+        data: null
+    })
 
     useEffect(()=>{
-        axios.get("http://localhost:8100/users/"+ userID)
+        axios.get("http://localhost:5000/profile/"+ userID)
             .then((res)=>{
-                console.log(res)
+                if(res.data.validation.isValid){
+                    setUser(prevState => {
+                        prevState.data = res.data.validation.result[0]
+                    })
+                    console.log({user})
+                }
             })
             .catch((err)=>{
                 console.log(err)
             })
-    }, [])
+    }, [userID])
 
     return(
         <div className={"profile_page"}>

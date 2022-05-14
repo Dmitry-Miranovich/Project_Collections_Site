@@ -4,21 +4,28 @@ import axios from "axios";
 import Header from "./Header";
 import UsersList from "./UsersList";
 import UserInfo from "./UserInfo";
+import {setUser} from "../../../actions";
+import {useSelector, useDispatch} from "react-redux";
 
 function UsersPage(props) {
 
-    const [user, setUser] = useState({
-        data: []
-    })
     const [isUsersExist, setIsUsersExist] = useState(false)
+    const isLogged = useSelector(state => state.isLogged)
+    const user = useSelector(state => state.userStore)
+    const dispatch = useDispatch()
+
+    //todo https://heroku-collection-server.herokuapp.com/users
 
     useEffect(()=>{
-        axios.get("http://localhost:8100/users")
+        axios.get("http://localhost:5000/users")
             .then((res)=>{
                 console.log(res.data.users)
-                setUser(res.data.users)
-                console.log(user)
-                setIsUsersExist(true)
+                console.log(isLogged)
+                dispatch(setUser(res.data.users))
+            }).then(()=>{
+            console.log( "Данные юзера")
+            console.log({user})
+            setIsUsersExist(true)
             })
             .catch((err)=>{
                 console.log(err)
@@ -29,7 +36,7 @@ function UsersPage(props) {
         <div className={"main_page"}>
             <Header/>
             {isUsersExist ?(
-                <UsersList data = {user}/>
+                <UsersList data = {user} isExists = {isUsersExist}/>
             ):(
                 <h2>Пользователей не найдено</h2>
             )}

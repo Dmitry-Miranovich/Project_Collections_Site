@@ -9,9 +9,11 @@ import LoginField from "./components/routes/login/LoginField";
 import UsersPage from "./components/routes/main_page/UsersPage";
 import ProfilePage from "./components/routes/profile/ProfilePage";
 import SearchPage from "./components/routes/search/SearchPage";
+import {useSelector} from "react-redux";
 
 
 const App = (props) =>{
+    const foreignUserId = useSelector(state => state.foreignUserID)
 
     return (
          <Router>
@@ -27,7 +29,7 @@ const App = (props) =>{
                  <Route path={"/users"}>
                      <UsersPage/>
                  </Route>
-                 <Route path={"/profile"}>
+                 <Route path={"/profile/"}>
                      <ProfilePage/>
                  </Route>
                  <Route path={"/search"}>

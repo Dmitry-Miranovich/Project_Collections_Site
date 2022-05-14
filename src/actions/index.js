@@ -16,3 +16,15 @@ export const setUserID = (ID)=>{
         data: ID
     }
 }
+export const setForeignId = (ID)=>{
+    return{
+        type: "FOREIGN_ID",
+        id: ID
+    }
+}
+export const setUser = (user)=>{
+    return{
+        type: "SET_USER",
+        data: user
+    }
+}

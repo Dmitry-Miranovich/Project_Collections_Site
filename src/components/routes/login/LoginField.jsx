@@ -35,13 +35,15 @@ function LoginField (props){
     const handleRedirect = res =>{
         if(res.redirect === true){
             dispatch(setUserID(res.id))
+            dispatch(isUserLogged(true))
             console.log({userID})
             history.push('/users')
         }
     }
+    //todo https://heroku-collection-server.herokuapp.com/login
     const handleSubmit = e =>{
         e.preventDefault()
-        axios.post("http://localhost:8100/login", user)
+        axios.post("http://localhost:5000/login", user)
             .then((res)=>{
                 console.log(res)
                 handleRedirect(res.data)
