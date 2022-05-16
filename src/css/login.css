@@ -18,9 +18,9 @@
 .registration_field{
     display: flex;
     justify-content: center;
+    margin-top: 20px
 }
 .registration_link{
-    margin-top: 15px;
     margin-left: 5px;
     justify-content: center;
 }

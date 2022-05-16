@@ -19,8 +19,7 @@ function UsersPage(props) {
     useEffect(()=>{
         axios.get("http://localhost:5000/users")
             .then((res)=>{
-                console.log(res.data.users)
-                console.log(isLogged)
+                localStorage.setItem("foreign_users", JSON.stringify(res.data.users))
                 dispatch(setUser(res.data.users))
             }).then(()=>{
             console.log( "Данные юзера")

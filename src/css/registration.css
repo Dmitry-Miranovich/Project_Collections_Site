@@ -20,8 +20,9 @@
 .registration_box p{
     width: 120px;
     text-align: left;
+    margin-top: 20px;
 }
 .registration_field{
     height: 20px;
-    margin: 15px;
+    margin: 0 15px 15px 15px;
 }

@@ -7,7 +7,6 @@ import {setForeignId} from "../../../actions";
 function UserInfo(user_info){
 
     const history = useHistory()
-    const userId = useSelector(state => state.foreignUserID)
     const dispatch = useDispatch()
 
     async function dispatching() {
@@ -17,7 +16,8 @@ function UserInfo(user_info){
         console.log("data of profile")
         dispatching().then((res)=>{
             console.log(res.id)
-            history.push("/profile/"+ userId)
+            localStorage.setItem("page_number", res.id)
+            history.push("/profile/"+ res.id)
         })
         console.log(user_info.user_data)
     }

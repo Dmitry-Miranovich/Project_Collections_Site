@@ -1,40 +1,60 @@
 import React, {useEffect, useState} from "react";
 import "../../../css/profile.css"
-import {setUserID} from "../../../actions";
+import {setCollections, setUserID} from "../../../actions";
 import axios from "axios";
 import Header from "../main_page/Header";
 import ProfileInfo from "./ProfileInfo";
 import ProfileCollection from "./ProfileCollection";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import AddCollection from "../collections/AddCollection";
+import CollectionItem from "../collections/CollectionItem";
 
 const ProfilePage = (prop) =>{
 
-    const userID = useSelector(state => state.foreignUserID)
+    const [isDataLoaded ,setIsDataLoaded] = useState(false)
+    const isAddCollection = useSelector(state => state.isCollectionAdd)
     const [user, setUser] = useState({
-        data: null
+        data: null,
     })
-
+    const collectionStore = useSelector(state => state.collectionStore)
+    const id = localStorage.getItem("page_number")
+    const dispatch = useDispatch()
     useEffect(()=>{
-        axios.get("http://localhost:5000/profile/"+ userID)
+        axios.get("http://localhost:5000/profile/"+ id)
             .then((res)=>{
+                console.log("Полученная инфа")
+                console.log(res.data)
                 if(res.data.validation.isValid){
-                    setUser(prevState => {
-                        prevState.data = res.data.validation.result[0]
-                    })
-                    console.log({user})
+                    setUser(res.data.validation.result)
+                    dispatch(setCollections(res.data.validation.collections))
+                    setIsDataLoaded(true)
+                    return res.data
+                }else{
+                    console.log(res.data)
                 }
             })
             .catch((err)=>{
                 console.log(err)
             })
-    }, [userID])
+    }, [id])
+
 
     return(
         <div className={"profile_page"}>
             <Header/>
             <div className={"profile_body"}>
-                <ProfileInfo/>
-                <ProfileCollection/>
+                {isDataLoaded? (
+                    <div className={"profile_sub_body"}>
+                        <ProfileInfo data = {user}/>
+                        {isAddCollection?(
+                            <AddCollection/>
+                        ):(
+                            <ProfileCollection data = {collectionStore}/>
+                        )}
+                    </div>
+                ):(
+                    <h2>Загрузка</h2>
+                )}
             </div>
 
         </div>

@@ -40,17 +40,19 @@ function RegistrationField(props){
 
     const handleSubmit = e =>{
         e.preventDefault()
-        if(user.email !== "" && user.first_name !== "" && user.middle_name !=="" && user.last_name !=="" && user.hash !==""){
+        if(user.email !== "" && user.first_name !== "" && user.middle_name !=="" && user.last_name !=="" && user.hash !=="") {
             user.hash = bcrypt.hashSync(user.hash, salt)
+            axios.post('http://localhost:5000/registration', user)
+                .then((res) => {
+                    console.log(res)
+                    handleRedirect(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }else{
+            alert("Пустые поля")
         }
-        axios.post('http://localhost:5000/registration', user)
-            .then((res)=>{
-                console.log(res)
-                handleRedirect(res.data)
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
     }
     return(
              <div className={"registration_box"}>
@@ -76,7 +78,7 @@ function RegistrationField(props){
                      </div>
                      <div>
                          <p>Пароль</p>
-                         <input className={"registration_field"} type={"text"} name = "hash"  onChange={handleInputChange}/>
+                         <input className={"registration_field"} type={"password"} name = "hash"  onChange={handleInputChange}/>
                      </div>
                      <button type ={"submit"} >Зарегистрироватся</button>
                  </form>

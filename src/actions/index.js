@@ -28,3 +28,15 @@ export const setUser = (user)=>{
         data: user
     }
 }
+export const setIsAddCollection = (state)=>{
+    return{
+        type: "ADD_COLLECTION",
+        data: state
+    }
+}
+export const setCollections = (state)=>{
+    return{
+        type: "SET_COLLECTION",
+        data: state
+    }
+}

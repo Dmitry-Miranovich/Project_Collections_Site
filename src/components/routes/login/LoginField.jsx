@@ -18,9 +18,6 @@ function LoginField (props){
         email: "",
         password: ""
     })
-    const [redirect, setRedirect] = useState({
-        redirect: false
-    })
 
     const handleInputChange = e =>{
         let name = e.target.name
@@ -35,8 +32,17 @@ function LoginField (props){
     const handleRedirect = res =>{
         if(res.redirect === true){
             dispatch(setUserID(res.id))
-            dispatch(isUserLogged(true))
+            localStorage.setItem("user_info", JSON.stringify(res))
             console.log({userID})
+            let loginSet = new Promise(function (resolve, reject) {
+                resolve('result')
+                reject('err')
+            })
+            loginSet.then(result=>{
+                dispatch(isUserLogged(true))
+            }).catch(err=>{
+                console.log(err)
+            })
             history.push('/users')
         }
     }
