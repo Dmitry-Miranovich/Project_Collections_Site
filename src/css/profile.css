@@ -40,6 +40,14 @@
 }
 .profile_collection_box{
     position: relative;
+    height: auto;
+    background: white;
+}
+.collections{
+
+}
+.collection-switch-box{
+    position: relative;
     width: 70%;
     float: right;
     left: 9%;
@@ -47,7 +55,4 @@
     height: auto;
     background: white;
     border: 1px #282c34 solid;
-}
-.collections{
-
 }

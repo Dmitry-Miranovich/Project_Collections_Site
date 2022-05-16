@@ -15,7 +15,6 @@ function UserInfo(user_info){
     const sendInfoToProfile = ()=>{
         console.log("data of profile")
         dispatching().then((res)=>{
-            console.log(res.id)
             localStorage.setItem("page_number", res.id)
             history.push("/profile/"+ res.id)
         })

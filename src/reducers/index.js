@@ -6,6 +6,8 @@ import foreignUserReducer from "./foreignUserReducer";
 import userReducer from "./userReducer";
 import addCollectionReducer from "./addCollectionReducer";
 import collectionReducer from  "./collectionReducer"
+import addItemReducer from "./addItemReducer";
+import addItemBoxReducer from "./addItemBoxReducer";
 
 const allReducers = combineReducers({
     isLogged: userLoginReducer,
@@ -14,7 +16,9 @@ const allReducers = combineReducers({
     userID: userAccountReducer,
     userStore:userReducer,
     foreignUserID: foreignUserReducer,
-    collectionStore: collectionReducer
+    collectionStore: collectionReducer,
+    isItemAdd: addItemReducer,
+    addItem: addItemBoxReducer
 })
 
 export default allReducers

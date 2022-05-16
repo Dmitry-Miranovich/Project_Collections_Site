@@ -40,3 +40,15 @@ export const setCollections = (state)=>{
         data: state
     }
 }
+export const setIsAddItem = (state)=>{
+    return{
+        type: "ADD_ITEM",
+        data: state
+    }
+}
+export const setIsAddItemBox = (state)=>{
+    return{
+        type: "ADD_ITEM_BOX",
+        data: state
+    }
+}

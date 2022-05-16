@@ -40,6 +40,7 @@ export default class DraggableUploader extends React.Component{
         //Read the file as a Data URL (which gonna give you a base64 encoded image data)
         fileReader.readAsDataURL(file);
 
+
     }
 
     addData(){
